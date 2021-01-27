@@ -6,7 +6,9 @@ namespace CS.Impl._01_Basic
     {
         public string Reverse(string sentence)
         {
-            throw new NotImplementedException();
+            char[] charArray = sentence.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }
