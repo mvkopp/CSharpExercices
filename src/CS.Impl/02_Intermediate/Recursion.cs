@@ -5,9 +5,13 @@ namespace CS.Impl._02_Intermediate
 {
     public class Recursion
     {
+        private List<int> naturalNumber = new List<int>();
+
         public IEnumerable<int> GetNaturalNumbers(int n)
         {
-            throw new NotImplementedException();
+            naturalNumber.Add(n);
+            if (n <= 1) return naturalNumber;
+            return GetNaturalNumbers(n - 1);
         }
 
         private IEnumerable<int> GetNaturalNumbers(List<int> naturalNumbers, int current, int max)
