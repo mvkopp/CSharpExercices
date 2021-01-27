@@ -6,9 +6,9 @@ namespace CS.Impl._01_Basic
     {
         public string Reverse(string sentence)
         {
-            char[] charArray = sentence.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            string[] cut = sentence.Split(" ");
+            Array.Reverse(cut);
+            return String.Join(" ",cut);
         }
     }
 }
