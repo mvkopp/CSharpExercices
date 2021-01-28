@@ -39,10 +39,14 @@ namespace CS.Impl._03_Linq
             //             group file by file.Substring(file.IndexOf(".")) into i
             //             select new { Key = file, Value = i.Count() };
 
-            var filter = files.Select(file => Path.GetExtension(file).TrimStart('.').ToLower())
-                .GroupBy(grp => grp, (ext, nb) => new { Extension = ext, Nombre = ext.Count() });
+            //var filter = files.Select(file => Path.GetExtension(file).TrimStart('.').ToLower())
+            //    .GroupBy(grp => grp, (ext, nb) => new { Extension = ext, Nombre = ext.Count() });
 
-            return filter.ToDictionary(d => d.Extension, d=> d.Nombre);
+            //return filter.ToDictionary(d => d.Extension, d=> d.Nombre);
+            var result = files.Select(file => Path.GetExtension(file).TrimStart('.').ToLower())
+                .GroupBy(group => group,
+                (extension, extensionCount) => new { Extension = extension, Count = extension.Count() });
+            return result.ToDictionary(d => d.Extension, d => d.Count);
         }
 
         public IEnumerable<Tuple<string, string, int, double>> GetFinalReceipe(List<Item> items, List<Client> clients, List<Purchase> purchases)
