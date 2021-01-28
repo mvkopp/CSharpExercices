@@ -10,7 +10,7 @@ namespace CS.Impl._03_Linq
         public IEnumerable<string> FindStringsWhichStartsAndEndsWithSpecificCharacter(string startCharacter, string endCharacter, IEnumerable<string> strings)
         {
             var filter = from word in strings
-                         where (word[0].Equals(startCharacter)) && (word[word.Length-1].Equals(endCharacter))
+                         where (word.Substring(0,1).Equals(startCharacter)) && (word.Substring(word.Length-1,1).Equals(endCharacter))
                          select word;
 
             return filter;
