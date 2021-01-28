@@ -48,7 +48,7 @@ namespace CS.Impl._02_Intermediate
 
         public bool IsPalindrome(string text)
         {
-            if (text[0] != text[-1]) return false;
+            if (text.Substring(0,1) != text.Substring(text.Length-1,1)) return false;
             if (text.Length <= 1) return true;
             return IsPalindrome(text.Substring(1, text.Length - 2));
         }
