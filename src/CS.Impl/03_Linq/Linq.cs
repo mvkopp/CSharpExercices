@@ -35,12 +35,8 @@ namespace CS.Impl._03_Linq
 
         public IDictionary<string, int> GetFileCountByExtension(IEnumerable<string> files)
         {
-            //var filter = from file in files
-            //             group file by file.Substring(file.IndexOf(".")) into i
-            //             select new { Key = file, Value = i.Count() };
-
             var filter = files.Select(file => file.Substring(file.IndexOf(".")+1).ToLower())
-                .GroupBy(grp => grp, (ext, nb) => new { Extension = ext, Nombre = ext.Count() });
+                .GroupBy(grp => grp, (ext, nb) => new { Extension = ext, Nombre = nb.Count() });
 
             return filter.ToDictionary(d => d.Extension, d=> d.Nombre);
         }
