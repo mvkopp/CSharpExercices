@@ -26,10 +26,9 @@ namespace CS.Impl._03_Linq
 
         public IEnumerable<int> GetTopNRecords(int limit, IEnumerable<int> numbers)
         {
-            var filter = from nb in numbers
-                         where nb > limit
+            var filter = (from nb in numbers
                          orderby nb descending
-                         select nb;
+                         select nb).Take(limit);
 
             return filter;
         }
