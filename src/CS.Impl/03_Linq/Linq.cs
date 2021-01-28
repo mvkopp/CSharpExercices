@@ -18,17 +18,32 @@ namespace CS.Impl._03_Linq
 
         public IEnumerable<int> GetGreaterNumbers(int limit, IEnumerable<int> numbers)
         {
-            throw new NotImplementedException();
+            var filter = from nb in numbers
+                         where nb > limit
+                         select nb;
+            return filter;
         }
 
         public IEnumerable<int> GetTopNRecords(int limit, IEnumerable<int> numbers)
         {
-            throw new NotImplementedException();
+            var filter = from nb in numbers
+                         where nb > limit
+                         orderby nb descending
+                         select nb;
+
+            return filter;
         }
 
         public IDictionary<string, int> GetFileCountByExtension(IEnumerable<string> files)
         {
-            throw new NotImplementedException();
+            //var filter = from file in files
+            //             group file by file.Substring(file.IndexOf(".")) into i
+            //             select new { Key = file, Value = i.Count() };
+
+            var filter = files.Select(file => file.Substring(file.IndexOf(".")))
+                .GroupBy(grp => grp, (ext, nb) => new { Extension = ext, Nombre = ext.Count() });
+
+            return filter.ToDictionary(d => d.Extension, d=> d.Nombre);
         }
 
         public IEnumerable<Tuple<string, string, int, double>> GetFinalReceipe(List<Item> items, List<Client> clients, List<Purchase> purchases)
